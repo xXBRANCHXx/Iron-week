@@ -187,7 +187,7 @@ function renderDay(day){
     const arr=setsFor(day,i), u=unitOf(e), L=S.last[e[0]];
     const done=arr.every(s=>s.done);
     const lowR=e[2].split('–')[0];
-    h+=`<article class="ex${done?' complete':''}"><div class="exhead"><div><h2>${esc(e[0])}</h2>
+    h+=`<article class="ex${done?' complete':''}"><div class="exhead"><div><h2><button class="ig-open" data-guide="${esc(e[0])}" aria-label="${esc(e[0])}: how to use the machine">${esc(e[0])}<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M12 7.5v.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></h2>
       <div class="last">${L?`Last: <b>${esc(L.w)} ${esc(L.u)} × ${esc(L.r)}</b>`:'No weight logged yet'}</div></div>
       <div class="row" style="flex-wrap:nowrap"><span class="target">${e[1]} × ${e[2]}</span><button class="unit" data-unit="${i}" aria-label="Switch units">${u}</button></div></div><div class="sets">`;
     arr.forEach((s,k)=>{
@@ -288,6 +288,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden)render()})
 render();
 </script>
 
+<script src="guide.js"></script>
 <script>
 if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
 try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist();}catch(e){}
